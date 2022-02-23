@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "test": "jest",
+    "test:utils": "jest src/utils/",
     "pre-commit": "lint-staged"
   },
   "dependencies": {
