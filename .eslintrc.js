@@ -3,6 +3,7 @@ module.exports = {
     es6: true,
     node: true,
     browser: true,
+    jest: true,
   },
   extends: ['eslint:recommended', 'plugin:prettier/recommended'],
   overrides: [
