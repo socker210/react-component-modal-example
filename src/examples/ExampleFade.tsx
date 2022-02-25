@@ -27,7 +27,16 @@ const ExampleFade = () => {
 
   return (
     <>
-      <Fade appear in={open} timeout={150}>
+      <Fade
+        appear
+        in={open}
+        timeout={150}
+        onEnter={(node) => {
+          const transition = node.style.transition
+
+          console.log(transition)
+        }}
+      >
         <Content />
       </Fade>
       <button onClick={() => setOpen(!open)}>{open ? 'Hide' : 'Show'}</button>

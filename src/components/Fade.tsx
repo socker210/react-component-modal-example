@@ -1,4 +1,4 @@
-import { cloneElement, ReactElement } from 'react'
+import { useMemo, cloneElement, ReactElement } from 'react'
 import Transition, {
   reflow,
   createTransition,
@@ -8,6 +8,7 @@ import Transition, {
   ExitHandler,
   EndHandler,
 } from '../components/Transition'
+import createChainedFunction from '../utils/createChainedFunction'
 
 type FadeProps = TransitionProps & {
   children: ReactElement
@@ -23,28 +24,26 @@ const Fade = ({
   onExit,
   ...props
 }: FadeProps) => {
-  const handleEnter: EnterHandler<undefined> = (node, isAppearing) => {
-    reflow(node)
+  const handleEnter = useMemo(() => {
+    return createChainedFunction(onEnter, (node) => {
+      reflow(node)
 
-    const transitionProps = getTransitionProps({
-      easing,
-      delay,
-      duration: timeout,
+      const transitionProps = getTransitionProps({
+        easing,
+        delay,
+        duration: timeout,
+      })
+
+      const enterTransition = createTransition({
+        properties: 'opacity',
+        easing: transitionProps.enter.easing ?? 'ease-in',
+        duration: transitionProps.enter.duration ?? 300,
+        delay: transitionProps.enter.delay ?? 0,
+      })
+
+      node.style.transition = enterTransition
     })
-
-    const enterTransition = createTransition({
-      properties: 'opacity',
-      easing: transitionProps.enter.easing ?? 'ease-in',
-      duration: transitionProps.enter.duration ?? 300,
-      delay: transitionProps.enter.delay ?? 0,
-    })
-
-    node.style.transition = enterTransition
-
-    if (onEnter) {
-      onEnter(node, isAppearing)
-    }
-  }
+  }, [delay, easing, timeout, onEnter])
 
   const handleExit: ExitHandler<undefined> = (node) => {
     const transitionProps = getTransitionProps({
