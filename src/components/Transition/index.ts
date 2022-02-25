@@ -1,4 +1,5 @@
 export { default } from './Transition'
 export { default as reflow } from './utils/reflow'
 export { default as createTransition } from './utils/createTransition'
+export { default as getTransitionProps } from './utils/getTransitionProps'
 export * from './types'

@@ -1,11 +1,11 @@
-import Fade from './examples/Fade'
+import ExampleFade from './examples/ExampleFade'
 
 const App = () => {
   return (
     <div>
       <h1>examples</h1>
       <h2>Fade</h2>
-      <Fade />
+      <ExampleFade />
     </div>
   )
 }

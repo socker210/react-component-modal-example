@@ -3,6 +3,9 @@ import {
   TransitionActions as _TransitionActions,
   TransitionProps as _TransitionProps,
   TransitionStatus as _TransitionStatus,
+  EnterHandler as _EnterHandler,
+  ExitHandler as _ExitHandler,
+  EndHandler as _EndHandler,
   UNMOUNTED,
 } from 'react-transition-group/Transition'
 
@@ -34,3 +37,9 @@ export type TransitionProps = _TransitionActions &
     easing?: TransitionEasing
     delay?: TransitionDelay
   }
+
+export type {
+  _EnterHandler as EnterHandler,
+  _ExitHandler as ExitHandler,
+  _EndHandler as EndHandler,
+}
