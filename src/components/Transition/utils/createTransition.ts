@@ -1,12 +1,8 @@
 type CreateTransitionParams = {
   properties: string | string[]
-  duration: number | string
+  duration: number
   easing: string
-  delay: number | string
-}
-
-export function formatMs(ms: number | string): string {
-  return typeof ms === 'string' ? ms : `${ms}ms`
+  delay: number
 }
 
 export default function createTransition({
@@ -16,9 +12,6 @@ export default function createTransition({
   delay,
 }: CreateTransitionParams): string {
   return (Array.isArray(properties) ? properties : [properties])
-    .map(
-      (property) =>
-        `${property} ${formatMs(duration)} ${easing} ${formatMs(delay)}`
-    )
+    .map((property) => `${property} ${duration}ms ${easing} ${delay}ms`)
     .join(',')
 }

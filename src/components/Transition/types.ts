@@ -1,21 +1,21 @@
 import { CSSProperties } from 'react'
 import {
   TransitionActions as _TransitionActions,
-  TransitionProps as _TransitionProps,
   TransitionStatus as _TransitionStatus,
+  TransitionProps as _TransitionProps,
   EnterHandler as _EnterHandler,
   ExitHandler as _ExitHandler,
   EndHandler as _EndHandler,
   UNMOUNTED,
 } from 'react-transition-group/Transition'
 
-export type TransitionEasing = string | { enter?: string; exit?: string }
+export type TransitionPhase<V> = V | { enter: V; exit: V }
 
-export type TransitionDelay = number | { enter?: number; exit?: number }
+export type TransitionEasing = Partial<TransitionPhase<string>>
 
-export type TransitionStatus = Exclude<_TransitionStatus, typeof UNMOUNTED>
+export type TransitionDelay = Partial<TransitionPhase<number>>
 
-export type TransitionStyles = Partial<Record<TransitionStatus, CSSProperties>>
+export type TransitionStyles = Partial<Record<_TransitionStatus, CSSProperties>>
 
 export type TransitionProps = _TransitionActions &
   Partial<

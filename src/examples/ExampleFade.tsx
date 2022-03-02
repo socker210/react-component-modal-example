@@ -24,22 +24,23 @@ const Content = (props: Record<string, unknown>) => {
 
 const ExampleFade = () => {
   const [open, setOpen] = useState(true)
+  const [timeout, setTimeout] = useState(150)
 
   return (
     <>
-      <Fade
-        appear
-        in={open}
-        timeout={150}
-        onEnter={(node) => {
-          const transition = node.style.transition
-
-          console.log(transition)
-        }}
-      >
+      <Fade appear in={open} timeout={timeout}>
         <Content />
       </Fade>
       <button onClick={() => setOpen(!open)}>{open ? 'Hide' : 'Show'}</button>
+      <button
+        onClick={() => {
+          const nextTimeout = Math.floor(Math.random() * 1000)
+
+          setTimeout(nextTimeout)
+        }}
+      >
+        Change timeout : {timeout}
+      </button>
     </>
   )
 }

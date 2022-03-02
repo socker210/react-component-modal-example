@@ -18,20 +18,20 @@ type GetTransitionPropsReturn = {
 }
 
 export default function getTransitionProps({
-  easing,
   duration,
+  easing,
   delay,
 }: GetTransitionPropsParams): GetTransitionPropsReturn {
+  const extract = (key: 'enter' | 'exit'): TransitionPropsItem => {
+    return {
+      duration: typeof duration === 'number' ? duration : duration?.[key],
+      easing: typeof easing === 'string' ? easing : easing?.[key],
+      delay: typeof delay === 'number' ? delay : delay?.[key],
+    }
+  }
+
   return {
-    enter: {
-      easing: typeof easing === 'string' ? easing : easing?.enter,
-      duration: typeof duration === 'number' ? duration : duration?.enter,
-      delay: typeof delay === 'number' ? delay : delay?.enter,
-    },
-    exit: {
-      easing: typeof easing === 'string' ? easing : easing?.exit,
-      duration: typeof duration === 'number' ? duration : duration?.exit,
-      delay: typeof delay === 'number' ? delay : delay?.exit,
-    },
+    enter: extract('enter'),
+    exit: extract('exit'),
   }
 }
