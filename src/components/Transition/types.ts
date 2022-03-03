@@ -6,14 +6,13 @@ import {
   EnterHandler as _EnterHandler,
   ExitHandler as _ExitHandler,
   EndHandler as _EndHandler,
-  UNMOUNTED,
 } from 'react-transition-group/Transition'
 
-export type TransitionPhase<V> = V | { enter: V; exit: V }
+export type TransitionPhase<V = string> = { enter: V; exit: V }
 
-export type TransitionEasing = Partial<TransitionPhase<string>>
+export type TransitionEasing = string | Partial<TransitionPhase<string>>
 
-export type TransitionDelay = Partial<TransitionPhase<number>>
+export type TransitionDelay = number | Partial<TransitionPhase<number>>
 
 export type TransitionStyles = Partial<Record<_TransitionStatus, CSSProperties>>
 

@@ -2,7 +2,7 @@
 
 ### Base
 
-- [ ] Fade
+- [x] Fade
 - [ ] Slide
 - [ ] Collapse
 

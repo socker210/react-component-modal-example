@@ -1,5 +1,5 @@
 ## TODO
 
-1. [ ] theming
-2. [ ] react-transition-group의 props와 css transition properties의 sync
-3. [ ] util 함수 정의
+1. [x] theming
+2. [x] react-transition-group의 props와 css transition properties의 sync
+3. [x] util 함수 정의

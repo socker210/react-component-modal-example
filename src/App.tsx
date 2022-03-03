@@ -1,5 +1,7 @@
 import { Global } from '@emotion/react'
 import styled from '@emotion/styled'
+import ThemeProvider from './components/theme/ThemeProvider'
+import defaultTheme from './components/theme/defaultTheme'
 import ExampleFade from './examples/ExampleFade'
 import ExampleDelayModal from './examples/ExampleDelayModal'
 import ExampleBackdrop from './examples/ExampleBackdrop'
@@ -10,7 +12,7 @@ const Main = styled.main`
 
 const App = () => {
   return (
-    <>
+    <ThemeProvider theme={defaultTheme}>
       <Global
         styles={{
           body: {
@@ -29,7 +31,7 @@ const App = () => {
         <h2>Delay Modal</h2>
         <ExampleDelayModal />
       </Main>
-    </>
+    </ThemeProvider>
   )
 }
 

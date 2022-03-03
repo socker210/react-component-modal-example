@@ -1,37 +1,27 @@
-import { TransitionProps } from '../types'
+import { TransitionProps, TransitionPhase } from '../types'
 
 type TransitionPropsItem = {
+  timeout?: number
   easing?: string
   delay?: number
-  duration?: number
 }
 
 type GetTransitionPropsParams = {
-  duration: TransitionProps['timeout']
+  timeout: TransitionProps['timeout']
   easing: TransitionProps['easing']
   delay: TransitionProps['delay']
-}
-
-type GetTransitionPropsReturn = {
-  enter: TransitionPropsItem
-  exit: TransitionPropsItem
+  property: keyof TransitionPhase
 }
 
 export default function getTransitionProps({
-  duration,
+  timeout,
   easing,
   delay,
-}: GetTransitionPropsParams): GetTransitionPropsReturn {
-  const extract = (key: 'enter' | 'exit'): TransitionPropsItem => {
-    return {
-      duration: typeof duration === 'number' ? duration : duration?.[key],
-      easing: typeof easing === 'string' ? easing : easing?.[key],
-      delay: typeof delay === 'number' ? delay : delay?.[key],
-    }
-  }
-
+  property,
+}: GetTransitionPropsParams): TransitionPropsItem {
   return {
-    enter: extract('enter'),
-    exit: extract('exit'),
+    timeout: typeof timeout === 'number' ? timeout : timeout?.[property],
+    easing: typeof easing === 'string' ? easing : easing?.[property],
+    delay: typeof delay === 'number' ? delay : delay?.[property],
   }
 }
